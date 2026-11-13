@@ -26,7 +26,7 @@ a { color:inherit; }
 header {
   background:var(--navy);
   color:white;
-  padding:32px max(6vw,20px) 75px;
+  padding:24px max(6vw,20px) 44px;
 }
 nav {
   max-width:1100px;
@@ -38,9 +38,51 @@ nav {
   font-size:14px;
 }
 nav a { text-decoration:none; }
+.brand {
+  display:flex;
+  align-items:center;
+  gap:15px;
+  min-width:0;
+}
+.profile-photo {
+  width:72px;
+  height:72px;
+  flex-shrink:0;
+  position:relative;
+  border:3px solid #fff;
+  border-radius:50%;
+  background:#35606b;
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+  font-size:19px;
+  letter-spacing:1px;
+  font-weight:700;
+}
+.profile-photo img {
+  display:block;
+  position:absolute;
+  width:66px;
+  height:66px;
+  border-radius:50%;
+  object-fit:cover;
+}
+.brand-name {
+  font-size:20px;
+  line-height:1.2;
+  font-weight:700;
+}
+.github-link {
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  font-size:15px;
+  white-space:nowrap;
+}
+.github-link svg { width:20px; height:20px; fill:currentColor; }
 .hero {
   max-width:1100px;
-  margin:70px auto 0;
+  margin:38px auto 0;
 }
 .eyebrow {
   color:#a6d9c6;
@@ -50,16 +92,18 @@ nav a { text-decoration:none; }
   font-weight:700;
 }
 h1 {
-  font-size:clamp(38px,6vw,68px);
+  font-size:clamp(31px,3.7vw,52px);
   line-height:1.12;
-  letter-spacing:-2px;
-  max-width:800px;
-  margin:18px 0;
+  letter-spacing:-1.7px;
+  max-width:none;
+  white-space:nowrap;
+  margin:12px 0;
 }
 .hero p {
   max-width:680px;
   color:#d4e3e1;
   font-size:17px;
+  margin-bottom:0;
 }
 main {
   max-width:1100px;
@@ -155,7 +199,12 @@ h3 {
   font-size:13px;
   font-weight:700;
 }
-.links a:hover { color:#104844; }
+ .links a:hover { color:#104844; }
+.links a:not([href]) {
+  color:#869793;
+  border-bottom-color:#bfcac7;
+  cursor:default;
+}
 footer {
   background:#e7efea;
   padding:32px 24px;
@@ -166,7 +215,15 @@ footer {
 @media(max-width:700px) {
   .grid { grid-template-columns:1fr; }
   header { padding-bottom:55px; }
-  .hero { margin-top:50px; }
+  .hero { margin-top:30px; }
+  h1 { white-space:normal; font-size:clamp(31px,7vw,44px); }
+  .profile-photo { width:62px; height:62px; }
+  .profile-photo img { width:56px; height:56px; }
+  .brand-name { font-size:17px; }
+}
+@media(max-width:420px) {
+  nav { flex-wrap:wrap; }
+  .github-link { margin-left:auto; }
 }
 </style>
 </head>
@@ -174,9 +231,22 @@ footer {
 
 <header>
   <nav>
-    <strong>Nicola G. Criscuolo, Ph.D.</strong>
-    <a href="https://github.com/nicocriscuolo"
-       target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    <div class="brand">
+      <!-- Upload your portrait to images/profile.png in this GitHub repository. -->
+      <div class="profile-photo" aria-label="Profile photo">
+        <span aria-hidden="true">NC</span>
+        <img src="images/profile.png" alt="Portrait of Nicola G. Criscuolo"
+             onerror="this.style.display='none'">
+      </div>
+      <span class="brand-name">Nicola G. Criscuolo, Ph.D.</span>
+    </div>
+    <a class="github-link" href="https://github.com/nicocriscuolo"
+       target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" role="img" aria-label="GitHub icon" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.64-1.25-1.64-1.02-.7.08-.68.08-.68 1.13.08 1.72 1.16 1.72 1.16 1 .1.89 2.3 3.26 1.64.1-.73.39-1.23.7-1.51-2.5-.29-5.13-1.25-5.13-5.57 0-1.23.44-2.24 1.16-3.03-.12-.29-.5-1.43.11-2.98 0 0 .95-.3 3.08 1.16A10.7 10.7 0 0 1 12 6.7c.95 0 1.9.13 2.79.38 2.13-1.45 3.07-1.16 3.07-1.16.62 1.55.24 2.69.12 2.98.72.79 1.15 1.8 1.15 3.03 0 4.33-2.63 5.28-5.14 5.56.4.35.74 1.03.74 2.08v2.52c0 .3.2.64.78.53A11.2 11.2 0 0 0 12 .8Z"/>
+      </svg>
+      GitHub
+    </a>
   </nav>
   <div class="hero">
     <div class="eyebrow">Scientific software portfolio</div>
@@ -218,6 +288,8 @@ footer {
            target="_blank" rel="noopener noreferrer">Explore platform ↗</a>
         <a href="https://github.com/hegep-eth/resistancebank.org"
            target="_blank" rel="noopener noreferrer">Source code ↗</a>
+        <a href="https://www.nature.com/articles/s41597-021-00978-9"
+           target="_blank" rel="noopener noreferrer">Publication ↗</a>
       </div>
     </div>
   </article>
@@ -244,7 +316,9 @@ footer {
       </div>
       <div class="links">
         <a href="https://nicocriscuolo1618.shinyapps.io/icumonitoring/"
-           target="_blank" rel="noopener noreferrer">Explore application ↗</a>
+           target="_blank" rel="noopener noreferrer">Explore platform ↗</a>
+        <!-- Add the href attribute to this link when the source code is available. -->
+        <a aria-disabled="true" title="Source code link to be added">Source code ↗</a>
         <a href="https://doi.org/10.4414/smw.2020.20277"
            target="_blank" rel="noopener noreferrer">Publication ↗</a>
       </div>
@@ -268,6 +342,8 @@ footer {
       </div>
       <div class="links">
         <a href="https://oxygenforindia.org/impact.html"
+           target="_blank" rel="noopener noreferrer">Explore platform ↗</a>
+        <a href="https://oxygenforindia.org/about.html"
            target="_blank" rel="noopener noreferrer">View project page ↗</a>
       </div>
     </div>
@@ -298,6 +374,8 @@ footer {
            target="_blank" rel="noopener noreferrer">Explore application ↗</a>
         <a href="https://github.com/nicocriscuolo/StructuRly"
            target="_blank" rel="noopener noreferrer">Source code ↗</a>
+        <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0229330"
+           target="_blank" rel="noopener noreferrer">Publication ↗</a>
       </div>
     </div>
   </article>
@@ -319,7 +397,9 @@ footer {
       </div>
       <div class="links">
         <a href="https://github.com/nicocriscuolo/OliveR"
-           target="_blank" rel="noopener noreferrer">Source & installation ↗</a>
+           target="_blank" rel="noopener noreferrer">Source code ↗</a>
+        <a href="https://www.mdpi.com/2223-7747/8/9/297"
+           target="_blank" rel="noopener noreferrer">Publication ↗</a>
       </div>
     </div>
   </article>
