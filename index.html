@@ -1,20 +1,52 @@
 
 <!DOCTYPE html>
+<!--
+  SCIENTIFIC SOFTWARE PORTFOLIO
+  =============================
+  This is a self-contained HTML page: layout, colors, and responsiveness live
+  in the <style> element below. No JavaScript framework or build step is needed.
+
+  Files expected next to this page in your GitHub repository:
+    index.html             (this page)
+    images/profile.png
+    images/resistancebank.png
+    images/icumonitoring.png
+    images/oxygenforindia.png
+    images/structurly.png
+    images/oliver.png
+
+  To update a project, edit its <article class="card"> block near the bottom.
+  To change the visual design across all cards, edit the shared CSS rules.
+  Comments like this one are ignored by browsers and not shown to visitors.
+-->
 <html lang="en">
 <head>
+<!-- Browser settings: encoding, responsive scaling, search summary, browser tab title. -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Scientific software portfolio of Nicola G. Criscuolo">
 <title>Software Portfolio | Nicola G. Criscuolo</title>
 <style>
+/*
+  CSS STYLE GUIDE
+  ---------------
+  CSS classes beginning with a period (e.g., .card) style every matching
+  HTML element. Values in :root are reusable theme colors.
+  Sizes are in CSS pixels unless another unit is specified.
+*/
+/* Global palette: change these values to recolor the site consistently.
+   --navy is used for headings/header; --teal for link and category accents. */
 :root {
   --navy:#143344;
   --teal:#237d79;
   --muted:#647780;
   --background:#f4f7f5;
 }
+/* Include padding/borders in measured element widths to prevent overflow. */
 * { box-sizing:border-box; }
+/* Smooth animation if in-page anchor links are added in the future. */
 html { scroll-behavior:smooth; }
+/* Base page font, text color, background, and default line spacing. */
 body {
   margin:0;
   font-family:system-ui,-apple-system,Arial,sans-serif;
@@ -22,12 +54,16 @@ body {
   background:var(--background);
   line-height:1.6;
 }
+/* Links inherit surrounding text color unless overridden by more specific rules. */
 a { color:inherit; }
+/* Full-width dark top banner; padding sets breathing room around its content. */
 header {
   background:var(--navy);
   color:white;
   padding:24px max(6vw,20px) 44px;
 }
+/* Top horizontal row: portrait/name on the left, GitHub on the right.
+   max-width keeps the row readable on wide screens. */
 nav {
   max-width:1100px;
   margin:auto;
@@ -37,13 +73,17 @@ nav {
   gap:20px;
   font-size:14px;
 }
+/* Remove the default underline from the navigation link. */
 nav a { text-decoration:none; }
+/* Keep profile photo and displayed name together in a flexible row. */
 .brand {
   display:flex;
   align-items:center;
   gap:15px;
   min-width:0;
 }
+/* Portrait container: fixed square with 2px white circular border.
+   overflow:hidden clips the portrait to a circle; initials are the fallback. */
 .profile-photo {
   width:72px;
   height:72px;
@@ -59,6 +99,8 @@ nav a { text-decoration:none; }
   letter-spacing:1px;
   font-weight:700;
 }
+/* Actual photo sits over the fallback initials. object-fit:cover crops it
+   to fill the circular area without distorting its aspect ratio. */
 .profile-photo img {
   display:block;
   position:absolute;
@@ -67,11 +109,13 @@ nav a { text-decoration:none; }
   border-radius:50%;
   object-fit:cover;
 }
+/* Size and weight of the name displayed beside the portrait. */
 .brand-name {
   font-size:20px;
   line-height:1.2;
   font-weight:700;
 }
+/* GitHub icon and text share a single aligned, nonwrapping link. */
 .github-link {
   display:inline-flex;
   align-items:center;
@@ -79,11 +123,14 @@ nav a { text-decoration:none; }
   font-size:15px;
   white-space:nowrap;
 }
+/* Size the GitHub SVG and fill it using the surrounding text color. */
 .github-link svg { width:20px; height:20px; fill:currentColor; }
+/* Introductory headline and summary, aligned with the navigation row. */
 .hero {
   max-width:1100px;
   margin:38px auto 0;
 }
+/* Small uppercase label above the main headline. */
 .eyebrow {
   color:#a6d9c6;
   text-transform:uppercase;
@@ -91,6 +138,8 @@ nav a { text-decoration:none; }
   font-size:12px;
   font-weight:700;
 }
+/* Main headline: fluid type size (clamp), tight letter spacing.
+   white-space:nowrap keeps it on one line on desktop; mobile overrides this. */
 h1 {
   font-size:clamp(31px,3.7vw,52px);
   line-height:1.12;
@@ -99,27 +148,33 @@ h1 {
   white-space:nowrap;
   margin:12px 0;
 }
+/* Supporting sentence under the headline, with a shorter reading width. */
 .hero p {
   max-width:680px;
   color:#d4e3e1;
   font-size:17px;
   margin-bottom:0;
 }
+/* Central content wrapper containing the project gallery. */
 main {
   max-width:1100px;
   margin:auto;
   padding:65px 24px;
 }
+/* Heading for the selected-projects section. */
 h2 {
   font-size:30px;
   letter-spacing:-1px;
   margin-bottom:25px;
 }
+/* Two equal-width project columns. On narrow devices this becomes one. */
 .grid {
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
   gap:24px;
 }
+/* Project card shell: white background, rounded border, vertical stacking.
+   flex layout allows the link row to stay at the bottom of the card. */
 .card {
   background:white;
   border:1px solid #e0e8e5;
@@ -128,6 +183,8 @@ h2 {
   display:flex;
   flex-direction:column;
 }
+/* Screenshot area above each description. The pale-green gradient is visible
+   when an image is absent; the 2px bottom border separates image/content. */
 .visual {
   height:230px;
   position:relative;
@@ -137,6 +194,7 @@ h2 {
   border-bottom: 2px solid #beded4;
   background:linear-gradient(135deg,#beded4,#e5eeeb);
 }
+/* Descriptive fallback text shown if a screenshot cannot load. */
 .visual span {
   font-size:24px;
   font-weight:700;
@@ -144,6 +202,8 @@ h2 {
   text-align:center;
   padding:24px;
 }
+/* Cover image fills the screenshot panel and is cropped rather than stretched.
+   For uncropped images, consider object-fit:contain (may create blank margins). */
 .visual img {
   position:absolute;
   inset:0;
@@ -151,12 +211,15 @@ h2 {
   height:100%;
   object-fit:cover;
 }
+/* Internal spacing and vertical layout of project title, description,
+   technology tags, and outbound links. */
 .content {
   padding:27px;
   display:flex;
   flex-direction:column;
   flex:1;
 }
+/* Compact accent label describing the project's scientific domain. */
 .category {
   color:var(--teal);
   font-size:11px;
@@ -164,21 +227,25 @@ h2 {
   text-transform:uppercase;
   letter-spacing:1px;
 }
+/* Name of each software project inside its card. */
 h3 {
   font-size:24px;
   margin:7px 0 10px;
   letter-spacing:-.6px;
 }
+/* Short project explanation, with softer text color. */
 .description {
   font-size:14px;
   color:var(--muted);
   margin:0 0 20px;
 }
+/* Wrap software/skill badges onto additional lines when needed. */
 .tags {
   display:flex;
   flex-wrap:wrap;
   gap:7px;
 }
+/* Appearance of each individual technology badge (R, Shiny, GIS, etc.). */
 .tags span {
   background:#edf5f1;
   border-radius:5px;
@@ -186,6 +253,8 @@ h3 {
   font-size:11px;
   color:#486c69;
 }
+/* Outbound action links; margin-top:auto pushes this row to the bottom
+   regardless of slight differences in card description length. */
 .links {
   margin-top:auto;
   padding-top:24px;
@@ -193,6 +262,7 @@ h3 {
   flex-wrap:wrap;
   gap:17px;
 }
+/* Styling for clickable project, source-code, and publication links. */
 .links a {
   color:var(--teal);
   text-decoration:none;
@@ -200,12 +270,16 @@ h3 {
   font-size:13px;
   font-weight:700;
 }
+/* Darken a link while the mouse pointer hovers over it. */
  .links a:hover { color:#104844; }
+/* An anchor without href (currently ICU source code) looks disabled
+   and cannot navigate until a real URL is provided. */
 .links a:not([href]) {
   color:#869793;
   border-bottom-color:#bfcac7;
   cursor:default;
 }
+/* Bottom strip with your professional signature. */
 footer {
   background:#e7efea;
   padding:32px 24px;
@@ -213,6 +287,8 @@ footer {
   font-size:13px;
   color:#5c7478;
 }
+/* TABLET / MOBILE: at 700px or narrower, stack cards vertically,
+   let the headline wrap, and reduce portrait/name sizes to fit. */
 @media(max-width:700px) {
   .grid { grid-template-columns:1fr; }
   header { padding-bottom:55px; }
@@ -222,6 +298,8 @@ footer {
   .profile-photo img { width:58px; height:58px; }
   .brand-name { font-size:17px; }
 }
+/* SMALL PHONES: allow the top navigation to wrap so the GitHub link
+   does not collide with your name or portrait. */
 @media(max-width:420px) {
   nav { flex-wrap:wrap; }
   .github-link { margin-left:auto; }
@@ -230,10 +308,16 @@ footer {
 </head>
 <body>
 
+<!-- HEADER: the dark banner holds navigation/identity and the page introduction. -->
+
 <header>
+  <!-- NAVIGATION: your personal identity at left, external GitHub profile at right. -->
   <nav>
+    <!-- Profile image and name. If images/profile.png fails to load,
+         the initials "NC" remain visible beneath it. -->
     <div class="brand">
-      <!-- Upload your portrait to images/profile.png in this GitHub repository. -->
+      <!-- Image path is relative to index.html. Keep the PNG in the images/
+           directory and preserve its filename, or update src below. -->
       <div class="profile-photo" aria-label="Profile photo">
         <span aria-hidden="true">NC</span>
         <img src="images/profile.png" alt="Portrait of Nicola G. Criscuolo"
@@ -241,14 +325,18 @@ footer {
       </div>
       <span class="brand-name">Nicola G. Criscuolo, Ph.D.</span>
     </div>
+    <!-- External GitHub account link. target="_blank" opens a new tab;
+         rel="noopener noreferrer" is a security/privacy safeguard. -->
     <a class="github-link" href="https://github.com/nicocriscuolo"
        target="_blank" rel="noopener noreferrer">
+      <!-- Inline SVG draws the GitHub logo without needing a separate image. -->
       <svg viewBox="0 0 24 24" role="img" aria-label="GitHub icon" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.64-1.25-1.64-1.02-.7.08-.68.08-.68 1.13.08 1.72 1.16 1.72 1.16 1 .1.89 2.3 3.26 1.64.1-.73.39-1.23.7-1.51-2.5-.29-5.13-1.25-5.13-5.57 0-1.23.44-2.24 1.16-3.03-.12-.29-.5-1.43.11-2.98 0 0 .95-.3 3.08 1.16A10.7 10.7 0 0 1 12 6.7c.95 0 1.9.13 2.79.38 2.13-1.45 3.07-1.16 3.07-1.16.62 1.55.24 2.69.12 2.98.72.79 1.15 1.8 1.15 3.03 0 4.33-2.63 5.28-5.14 5.56.4.35.74 1.03.74 2.08v2.52c0 .3.2.64.78.53A11.2 11.2 0 0 0 12 .8Z"/>
       </svg>
       GitHub
     </a>
   </nav>
+  <!-- HERO: label, main title, and one-sentence description of the portfolio. -->
   <div class="hero">
     <div class="eyebrow">Scientific software portfolio</div>
     <h1>Turning data into open-access online tools</h1>
@@ -258,11 +346,19 @@ footer {
   </div>
 </header>
 
+<!-- MAIN: the portfolio's repeated project cards are displayed as a CSS grid. -->
 <main>
 <h2>Selected projects</h2>
+<!-- Each <article class="card"> represents one piece of software.
+     To add a project, copy an existing card and edit its screenshot,
+     subject label, title, description, tags, and links. -->
 <div class="grid">
 
+  <!-- PROJECT: resistancebank.org. AMR survey repository. Three links: live platform, GitHub source, paper. -->
   <article class="card">
+    <!-- Visual panel: local screenshot in images/resistancebank.png; if it fails,
+         the text in <span> remains as a readable fallback.
+         loading="lazy" defers off-screen image downloads. -->
     <div class="visual">
       <span>Antimicrobial resistance mapping</span>
       <img
@@ -271,6 +367,7 @@ footer {
         loading="lazy"
         onerror="this.style.display='none'">
     </div>
+    <!-- Card body: category, product title, summary, technology badges, links. -->
     <div class="content">
       <div class="category">Antimicrobial resistance · Surveillance for food animals</div>
       <h3>resistancebank.org</h3>
@@ -279,9 +376,12 @@ footer {
         surveys in animals with high-resolution maps,
         databases, and country-level reports.
       </p>
+      <!-- Skill/technology badges; add or remove <span> elements as desired. -->
       <div class="tags">
         <span>R</span><span>Shiny</span><span>HTML</span><span>CSS</span><span>GIS</span><span>Data collection</span>
       </div>
+      <!-- External resources. Change the href values when destinations move.
+           Each active link opens a new browser tab. -->
       <div class="links">
         <a href="https://resistancebank.org/"
            target="_blank" rel="noopener noreferrer">Explore platform ↗</a>
@@ -293,7 +393,11 @@ footer {
     </div>
   </article>
 
+  <!-- PROJECT: icumonitoring.ch. COVID-19 ICU forecasting. Source-code link currently has no href. -->
   <article class="card">
+    <!-- Visual panel: local screenshot in images/icumonitoring.png; if it fails,
+         the text in <span> remains as a readable fallback.
+         loading="lazy" defers off-screen image downloads. -->
     <div class="visual">
       <span>Swiss ICU monitoring</span>
       <img
@@ -302,6 +406,7 @@ footer {
         loading="lazy"
         onerror="this.style.display='none'">
     </div>
+    <!-- Card body: category, product title, summary, technology badges, links. -->
     <div class="content">
       <div class="category">COVID-19 · Forecasting ICU occupancy</div>
       <h3>icumonitoring.ch</h3>
@@ -310,13 +415,18 @@ footer {
         of intensive care unit occupancy during the
         COVID-19 epidemic in Switzerland.
       </p>
+      <!-- Skill/technology badges; add or remove <span> elements as desired. -->
       <div class="tags">
         <span>R</span><span>Shiny</span><span>HTML</span><span>CSS</span><span>GIS</span><span>Resource accessibility</span>
       </div>
+      <!-- External resources. Change the href values when destinations move.
+           Each active link opens a new browser tab. -->
       <div class="links">
         <a href="https://nicocriscuolo1618.shinyapps.io/icumonitoring/"
            target="_blank" rel="noopener noreferrer">Explore platform ↗</a>
-        <!-- Add the href attribute to this link when the source code is available. -->
+        <!-- ICU source code is intentionally unavailable for now.
+             Once published, set href="https://..." and add target="_blank"
+             rel="noopener noreferrer" to make this anchor clickable. -->
         <a aria-disabled="true" title="Source code link to be added">Source code ↗</a>
         <a href="https://doi.org/10.4414/smw.2020.20277"
            target="_blank" rel="noopener noreferrer">Publication ↗</a>
@@ -324,7 +434,11 @@ footer {
     </div>
   </article>
 
+  <!-- PROJECT: OxygenForIndia. COVID-19 oxygen mapping. Links go to the impact page and project about page. -->
   <article class="card">
+    <!-- Visual panel: local screenshot in images/oxygenforindia.png; if it fails,
+         the text in <span> remains as a readable fallback.
+         loading="lazy" defers off-screen image downloads. -->
     <div class="visual">
       <span>Medical oxygen accessibility</span>
       <img
@@ -333,6 +447,7 @@ footer {
         loading="lazy"
         onerror="this.style.display='none'">
     </div>
+    <!-- Card body: category, product title, summary, technology badges, links. -->
     <div class="content">
       <div class="category">COVID-19 · Resource mapping</div>
       <h3>OxygenForIndia</h3>
@@ -341,9 +456,12 @@ footer {
         medical oxygen capacities and availability
         across India during the COVID-19 epidemic.
       </p>
+      <!-- Skill/technology badges; add or remove <span> elements as desired. -->
       <div class="tags">
         <span>R</span><span>Shiny</span><span>GIS</span><span>Resource accessibility</span>
       </div>
+      <!-- External resources. Change the href values when destinations move.
+           Each active link opens a new browser tab. -->
       <div class="links">
         <a href="https://oxygenforindia.org/impact.html"
            target="_blank" rel="noopener noreferrer">Explore platform ↗</a>
@@ -353,7 +471,11 @@ footer {
     </div>
   </article>
 
+  <!-- PROJECT: StructuRly. Population-genetics visualization. Links go to app, source, and publication. -->
   <article class="card">
+    <!-- Visual panel: local screenshot in images/structurly.png; if it fails,
+         the text in <span> remains as a readable fallback.
+         loading="lazy" defers off-screen image downloads. -->
     <div class="visual">
       <span>Interactive population analysis</span>
       <img
@@ -362,6 +484,7 @@ footer {
         loading="lazy"
         onerror="this.style.display='none'">
     </div>
+    <!-- Card body: category, product title, summary, technology badges, links. -->
     <div class="content">
       <div class="category">Population genetics · Data analysis and visualization</div>
       <h3>StructuRly</h3>
@@ -370,9 +493,12 @@ footer {
         and visualization of population genetics
         data and STRUCTURE and ADMIXTURE outputs.
       </p>
+      <!-- Skill/technology badges; add or remove <span> elements as desired. -->
       <div class="tags">
         <span>R</span><span>Shiny</span><span>Statistics</span><span>Data visualization</span>
       </div>
+      <!-- External resources. Change the href values when destinations move.
+           Each active link opens a new browser tab. -->
       <div class="links">
         <a href="https://nicocriscuolo1618.shinyapps.io/StructuRly/"
            target="_blank" rel="noopener noreferrer">Explore platform↗</a>
@@ -384,7 +510,11 @@ footer {
     </div>
   </article>
 
+  <!-- PROJECT: OliveR. Multivariate-analysis package/app. Links go to source and publication. -->
   <article class="card">
+    <!-- Visual panel: local screenshot in images/oliver.png; if it fails,
+         the text in <span> remains as a readable fallback.
+         loading="lazy" defers off-screen image downloads. -->
     <div class="visual">
       <span>Multivariate & geographical analysis</span>
       <img
@@ -393,6 +523,7 @@ footer {
         loading="lazy"
         onerror="this.style.display='none'">
     </div>
+    <!-- Card body: category, product title, summary, technology badges, links. -->
     <div class="content">
       <div class="category">Biodiversity · Data analysis and visualization</div>
       <h3>OliveR</h3>
@@ -401,9 +532,12 @@ footer {
         analysis and interactive exploration of
         geographical, environmental, and biological data.
       </p>
+      <!-- Skill/technology badges; add or remove <span> elements as desired. -->
       <div class="tags">
         <span>R</span><span>Shiny</span><span>GIS</span><span>Statistics</span><span>Data visualization</span>
       </div>
+      <!-- External resources. Change the href values when destinations move.
+           Each active link opens a new browser tab. -->
       <div class="links">
         <a href="https://github.com/nicocriscuolo/OliveR"
            target="_blank" rel="noopener noreferrer">Source code ↗</a>
@@ -416,6 +550,7 @@ footer {
 </div>
 </main>
 
+<!-- FOOTER: short identification shown beneath the project gallery. -->
 <footer>
   Nicola G. Criscuolo · Health Geographer & Data Scientist
 </footer>
