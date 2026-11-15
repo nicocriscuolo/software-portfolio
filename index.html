@@ -227,17 +227,30 @@ h2 {
   text-transform:uppercase;
   letter-spacing:1px;
 }
+
 /* Name of each software project inside its card. */
 h3 {
   font-size:24px;
   margin:7px 0 10px;
   letter-spacing:-.6px;
 }
+
 /* Short project explanation, with softer text color. */
 .description {
   font-size:14px;
   color:var(--muted);
   margin:0 0 20px;
+}
+
+/* Color and style for hyperlinks within text. */
+.description a {
+  color: var(--teal);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.description a:hover {
+  color: #104844;
 }
 /* Wrap software/skill badges onto additional lines when needed. */
 .tags {
@@ -484,6 +497,7 @@ footer {
         loading="lazy"
         onerror="this.style.display='none'">
     </div>
+    
     <!-- Card body: category, product title, summary, technology badges, links. -->
     <div class="content">
       <div class="category">Population genetics · Data analysis and visualization</div>
@@ -491,8 +505,15 @@ footer {
       <p class="description">
         Online platform for statistical analysis
         and visualization of population genetics
-        data and STRUCTURE and ADMIXTURE outputs.
+        data and
+        <a href="https://web.stanford.edu/group/pritchardlab/structure.html"
+          target="_blank" rel="noopener noreferrer">STRUCTURE</a>
+        and
+        <a href="https://dalexander.github.io/admixture/"
+          target="_blank" rel="noopener noreferrer">ADMIXTURE</a>
+        outputs.
       </p>
+
       <!-- Skill/technology badges; add or remove <span> elements as desired. -->
       <div class="tags">
         <span>R</span><span>Shiny</span><span>Statistics</span><span>Data visualization</span>
